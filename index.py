@@ -27,6 +27,15 @@ async def on_message(message):
             tchoice = await client.wait_for("message")
             if tchoice.content.startswith("n"):
                 answer = 1
+            elif tchoice.content.startswith("N"):
+                answer = 1
+            elif tchoice.content.startswith("y"):
+                answer = 0
+            elif tchoice.content.startswith("Y"):
+                answer = 0
+            else:
+                await message.channel.send("입력 오류 발생 자동적으로 Y 선택")
+                answer = 0
         lchoice = random.choice(select)
         await message.channel.send(lchoice)
         select = clear
